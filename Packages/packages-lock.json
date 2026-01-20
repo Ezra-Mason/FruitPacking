@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ezra-mason.ez-utils": {
+      "version": "https://github.com/Ezra-Mason/ez-utils.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "33e6b8b3f69573feec86fa3886fcd4b41ca41fa9"
+    },
     "com.unity.2d.animation": {
       "version": "13.0.2",
       "depth": 0,
