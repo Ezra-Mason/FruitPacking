@@ -1,5 +1,6 @@
 using ezutils.Core;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,19 +12,19 @@ public class FruitDropper : MonoBehaviour
 
     [Header("Droppers")]
     [SerializeField] private GameObject _fruitPrefab;
-    [SerializeField] private GameObject _previewFruitPrefab;
-    [SerializeField]private GameObject _previewFruit;
+    [SerializeField] private GameObject _currentFruit;
+    [SerializeField] private Rigidbody2D _currentRigidbody;
     [SerializeField] private readonly float _dropHeight;
     [SerializeField] private Vector3 _dropPosition;
-    //private Vector3 _lastPosition;
-    //[SerializeField] private Vector3 _move;
-    //[SerializeField] private float _moveSpeed;
+    [SerializeField] private bool _shouldDrop;
+    [Header("Respawn Timer")]
+    [SerializeField] private float _currentTimer;
+    private const float RESPAWN_TIME = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _previewFruit = Instantiate(_previewFruitPrefab, _dropPosition, Quaternion.identity);
-        _previewFruit.transform.position = _dropPosition;
+        SpawnNextFruit();
     }
 
     // Update is called once per frame
@@ -31,10 +32,54 @@ public class FruitDropper : MonoBehaviour
     {
         if (_isTouching.Value)
         {
-            var pos = _previewFruit.transform.position;
+            var pos = _currentFruit.transform.position;
             pos.x = _touchPosition.Value.x;
-            _previewFruit.transform.position = pos;
+            _currentFruit.transform.position = pos;
+            if (!_shouldDrop)
+            {
+                _shouldDrop = true;
+            }
         }
+        else
+        {
+            if (_shouldDrop)
+            {
+                Drop();
+            }
+        }
+
+        if (_currentTimer >= 0)
+        {
+            _currentTimer -= Time.deltaTime;
+        }
+        else if (_currentFruit == null)
+        {
+            SpawnNextFruit();
+        }
+    }
+
+    private void SpawnNextFruit()
+    {
+        _currentFruit = Instantiate(_fruitPrefab, _dropPosition, Quaternion.identity);
+        _currentFruit.transform.position = _dropPosition;
+
+        Rigidbody2D rb;
+        _currentFruit.TryGetComponent<Rigidbody2D>(out rb);
+        if(rb != null)
+        {
+            _currentRigidbody = rb;
+        }
+    }
+
+    private void Drop()
+    {
+        _shouldDrop = false;
+        _currentTimer = RESPAWN_TIME;
+        if (!_currentRigidbody) return;
+
+        _currentRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        _currentFruit = null;
+        _currentRigidbody = null;
     }
 
     private void OnDrawGizmosSelected()
