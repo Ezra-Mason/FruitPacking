@@ -30,7 +30,7 @@ public class FruitDropper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isTouching.Value)
+        if (_isTouching.Value && _currentFruit)
         {
             var pos = _currentFruit.transform.position;
             pos.x = _touchPosition.Value.x;
