@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class FruitDropper : MonoBehaviour
 {
+    [SerializeField] private MergeManager _mergeManager;
     [Header("Inputs")]
     [SerializeField] private Vector3Variable _touchPosition;
     [SerializeField] private BoolVariable _isTouching;
@@ -61,7 +62,16 @@ public class FruitDropper : MonoBehaviour
     private void SpawnNextFruit()
     {
         _currentFruit = Instantiate(_fruitPrefab, _dropPosition, Quaternion.identity);
-        _currentFruit.transform.position = _dropPosition;
+        _currentFruit.TryGetComponent<Fruit>(out var fruit);
+        if (fruit != null)
+        {
+            _mergeManager.AddFruit(fruit);
+        }
+        else
+        {
+            Debug.LogWarning("Spawned Fruit has no Fruit Script");
+        }
+            _currentFruit.transform.position = _dropPosition;
 
         Rigidbody2D rb;
         _currentFruit.TryGetComponent<Rigidbody2D>(out rb);
