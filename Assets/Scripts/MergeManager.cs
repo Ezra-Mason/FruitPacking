@@ -2,7 +2,7 @@ using System.Collections.Generic;using UnityEngine;
 
 public class MergeManager : MonoBehaviour
 {
-    private List<Fruit> _fruit;
+    private List<Fruit> _fruit = new List<Fruit>();
     public void AddFruit(Fruit fruit)
     {
         _fruit.Add(fruit);

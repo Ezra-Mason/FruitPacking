@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583219bb881bd434ca45c37c59c0a446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FruitDropper
+  _mergeManager: {fileID: 416506779}
   _touchPosition: {fileID: 11400000, guid: ee6df37e3174c434ba579638c3d8750c, type: 2}
   _isTouching: {fileID: 11400000, guid: c23180632fe55894cad80aea7392b970, type: 2}
   _fruitPrefab: {fileID: 5327459997822273759, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
