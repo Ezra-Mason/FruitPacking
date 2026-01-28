@@ -14,13 +14,6 @@ public class Fruit : MonoBehaviour
     [SerializeField] private int _size;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (OnFruitCollision != null)
-        {
-            OnFruitCollision(this, collision);
-        }
-    }
-    private void Destory()
-    {
-        GameObject.Destroy(this.gameObject);
+        OnFruitCollision?.Invoke(this, collision);
     }
 }
