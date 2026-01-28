@@ -71,11 +71,11 @@ public class FruitDropper : MonoBehaviour
         {
             Debug.LogWarning("Spawned Fruit has no Fruit Script");
         }
-            _currentFruit.transform.position = _dropPosition;
+        _currentFruit.transform.position = _dropPosition;
 
         Rigidbody2D rb;
         _currentFruit.TryGetComponent<Rigidbody2D>(out rb);
-        if(rb != null)
+        if (rb != null)
         {
             _currentRigidbody = rb;
         }

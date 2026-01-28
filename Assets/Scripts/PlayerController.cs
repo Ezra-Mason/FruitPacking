@@ -52,10 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private void StartTouch(InputAction.CallbackContext context)
     {
-        
+
         var value = context.ReadValue<float>();
         Debug.Log($"start touch = {value}");
-        _startWorldPosition= _camera.ScreenToWorldPoint(
+        _startWorldPosition = _camera.ScreenToWorldPoint(
             new Vector3(
                 _startScreenPosition.x,
                 _startScreenPosition.y,
@@ -67,13 +67,13 @@ public class PlayerController : MonoBehaviour
             //if (Physics.Raycast(ray, out hit, 100, _layerMask))
             //{
             //    Debug.DrawLine(ray.origin, hit.point, Color.cyan);
-                StartDrag();
-/*            }
-            else
-            {
-                //nudge the scale
-                _scaleSpring.Velocity += Vector3.one * _scaleAmount;
-            }*/
+            StartDrag();
+            /*            }
+                        else
+                        {
+                            //nudge the scale
+                            _scaleSpring.Velocity += Vector3.one * _scaleAmount;
+                        }*/
         }
         else
         {
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartPosition(InputAction.CallbackContext context)
     {
-        _startScreenPosition= context.ReadValue<Vector2>();
+        _startScreenPosition = context.ReadValue<Vector2>();
         Debug.Log("startPos");
     }
     private void CurrentPosition(InputAction.CallbackContext context)
