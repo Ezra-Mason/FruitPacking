@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ba029ee5fffdc49a4511af46193649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MergeManager
+  _alllFruit: {fileID: 11400000, guid: 308d1fa66d81ac240a3dadb686b8f748, type: 2}
 --- !u!4 &416506780
 Transform:
   m_ObjectHideFlags: 0
