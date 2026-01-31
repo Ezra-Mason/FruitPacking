@@ -335,7 +335,7 @@ MonoBehaviour:
   _mergeManager: {fileID: 416506779}
   _touchPosition: {fileID: 11400000, guid: ee6df37e3174c434ba579638c3d8750c, type: 2}
   _isTouching: {fileID: 11400000, guid: c23180632fe55894cad80aea7392b970, type: 2}
-  _fruitPrefab: {fileID: 5327459997822273759, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
+  _fruitPrefabs: {fileID: 11400000, guid: 308d1fa66d81ac240a3dadb686b8f748, type: 2}
   _currentFruit: {fileID: 0}
   _currentRigidbody: {fileID: 0}
   _dropPosition: {x: 0, y: 3.99, z: 0}

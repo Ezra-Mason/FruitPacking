@@ -1,5 +1,4 @@
 using ezutils.Core;
-using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +11,7 @@ public class FruitDropper : MonoBehaviour
     [SerializeField] private BoolVariable _isTouching;
 
     [Header("Droppers")]
-    [SerializeField] private GameObject _fruitPrefab;
+    [SerializeField] private GameObjectRepository _fruitPrefabs;
     [SerializeField] private GameObject _currentFruit;
     [SerializeField] private Rigidbody2D _currentRigidbody;
     [SerializeField] private readonly float _dropHeight;
@@ -61,7 +60,9 @@ public class FruitDropper : MonoBehaviour
 
     private void SpawnNextFruit()
     {
-        _currentFruit = Instantiate(_fruitPrefab, _dropPosition, Quaternion.identity);
+        var index = UnityEngine.Random.Range(0, _fruitPrefabs.Length - 1);
+        var prefab = _fruitPrefabs[index];
+        _currentFruit = Instantiate(prefab, _dropPosition, Quaternion.identity);
         _currentFruit.TryGetComponent<Fruit>(out var fruit);
         if (fruit != null)
         {
