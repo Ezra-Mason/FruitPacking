@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 635436349444716484, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 635436349444716484, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 635436349444716484, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327459997822273759, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
       propertyPath: m_Name
-      value: P_DroppedFruit1_V
+      value: PV_DroppedFruit1
       objectReference: {fileID: 0}
     - target: {fileID: 7688895067867993401, guid: 14ffe94848f11da4d897a98fccdb0244, type: 3}
       propertyPath: m_Color.b

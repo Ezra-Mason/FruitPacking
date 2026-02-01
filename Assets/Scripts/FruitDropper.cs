@@ -60,7 +60,7 @@ public class FruitDropper : MonoBehaviour
 
     private void SpawnNextFruit()
     {
-        var index = UnityEngine.Random.Range(0, _fruitPrefabs.Length - 1);
+        var index = UnityEngine.Random.Range(0, (_fruitPrefabs.Length - 1)/2);
         var prefab = _fruitPrefabs[index];
         _currentFruit = Instantiate(prefab, _dropPosition, Quaternion.identity);
         _currentFruit.TryGetComponent<Fruit>(out var fruit);
