@@ -20,6 +20,9 @@ public class FruitDropper : MonoBehaviour
     [Header("Respawn Timer")]
     [SerializeField] private float _currentTimer;
     private const float RESPAWN_TIME = 2f;
+    [Header("Preview Line")]
+    [SerializeField] private GameObject _previewLine;
+    private bool _showLine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +38,19 @@ public class FruitDropper : MonoBehaviour
             var pos = _currentFruit.transform.position;
             pos.x = _touchPosition.Value.x;
             _currentFruit.transform.position = pos;
+
+            if (_showLine)
+            {
+                var linePos = _previewLine.transform.position;
+                linePos.x = _touchPosition.Value.x;
+                _previewLine.transform.position = linePos;
+            }
+            else
+            {
+                _showLine = true;
+                _previewLine.SetActive(true);
+            }
+
             if (!_shouldDrop)
             {
                 _shouldDrop = true;
@@ -42,6 +58,12 @@ public class FruitDropper : MonoBehaviour
         }
         else
         {
+
+            if (_showLine)
+            {
+                _previewLine.SetActive(false);
+                _showLine = false;
+            }
             if (_shouldDrop)
             {
                 Drop();
