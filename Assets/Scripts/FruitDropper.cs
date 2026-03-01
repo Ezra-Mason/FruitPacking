@@ -14,7 +14,7 @@ public class FruitDropper : MonoBehaviour
     [SerializeField] private GameObjectRepository _fruitPrefabs;
     [SerializeField] private GameObject _currentFruit;
     [SerializeField] private Rigidbody2D _currentRigidbody;
-    [SerializeField] private readonly float _dropHeight;
+    [SerializeField] private Vector2 _horizontalLimit;
     [SerializeField] private Vector3 _dropPosition;
     [SerializeField] private bool _shouldDrop;
     [Header("Respawn Timer")]
@@ -36,13 +36,14 @@ public class FruitDropper : MonoBehaviour
         if (_isTouching.Value && _currentFruit)
         {
             var pos = _currentFruit.transform.position;
-            pos.x = _touchPosition.Value.x;
+            pos.x = Mathf.Clamp(_touchPosition.Value.x, _horizontalLimit.x, _horizontalLimit.y);
+
             _currentFruit.transform.position = pos;
 
             if (_showLine)
             {
                 var linePos = _previewLine.transform.position;
-                linePos.x = _touchPosition.Value.x;
+                linePos.x = pos.x;
                 _previewLine.transform.position = linePos;
             }
             else
@@ -117,6 +118,13 @@ public class FruitDropper : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(_dropPosition, 1f);
+        Gizmos.color = Color.red;
+        Vector3 startPos = new Vector3(_horizontalLimit.x, _dropPosition.y);
+        Vector3 endPos = new Vector3(_horizontalLimit.x, 0f);
+        Gizmos.DrawLine(startPos, endPos);
+
+        startPos = new Vector3(_horizontalLimit.y, _dropPosition.y);
+        endPos = new Vector3(_horizontalLimit.y, 0f);
+        Gizmos.DrawLine(startPos, endPos);
     }
 }
